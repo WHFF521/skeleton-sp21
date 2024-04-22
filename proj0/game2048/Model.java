@@ -141,12 +141,16 @@ public class Model extends Observable {
                                     this.score += t.value()*2;
                                     changed = true;
                                     tchanged=true;
+                                    break;
                                 }
                             }
                         }
                         if(!tchanged){
-                            if(nullTileRow!=row) board.move(col,nullTileRow,t);
-                            changed = true;
+                            if(nullTileRow!=row) {
+                                board.move(col,nullTileRow,t);
+                                changed = true;
+                            }
+
                         }
                     }
                 }
@@ -179,12 +183,16 @@ public class Model extends Observable {
                                     this.score += t.value()*2;
                                     changed = true;
                                     tchanged=true;
+                                    break;
                                 }
                             }
                         }
                         if(!tchanged){
-                            if(nullTileRow!=row) board.move(col,nullTileRow,t);
-                            changed = true;
+                            if(nullTileRow!=row) {
+                                board.move(col,nullTileRow,t);
+                                changed = true;
+                            }
+
                         }
                     }
                 }
@@ -217,12 +225,16 @@ public class Model extends Observable {
                                     this.score += t.value()*2;
                                     changed = true;
                                     tchanged=true;
+                                    break;
                                 }
                             }
                         }
                         if(!tchanged){
-                            if(nullTileCol!=col) board.move(nullTileCol,row,t);
-                            changed = true;
+                            if(nullTileCol!=col) {
+                                board.move(nullTileCol,row,t);
+                                changed = true;
+                            }
+
                         }
                     }
                 }
@@ -255,12 +267,15 @@ public class Model extends Observable {
                                     this.score += t.value()*2;
                                     changed = true;
                                     tchanged=true;
+                                    break;
                                 }
                             }
                         }
                         if(!tchanged){
-                            if(nullTileCol!=col) board.move(nullTileCol,row,t);
-                            changed = true;
+                            if(nullTileCol!=col) {
+                                board.move(nullTileCol,row,t);
+                                changed = true;
+                            }
                         }
                     }
                 }

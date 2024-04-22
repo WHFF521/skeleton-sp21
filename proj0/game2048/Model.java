@@ -113,7 +113,159 @@ public class Model extends Observable {
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
-
+        boolean[][] merge = new boolean[board.size()][board.size()];
+        if(side==Side.NORTH){
+            for(int col = 0; col < board.size(); col++){
+                for(int row = board.size()-1; row >= 0; row--){
+                    Tile t = board.tile(col, row);
+                    if(t!=null){
+                        int nullTileRow=row;
+                        boolean tchanged=false;
+                        for(int k = row+1; k <=3; k++){
+                            Tile above = board.tile(col, k);
+                            if(above==null){
+                                nullTileRow = k;
+                            }
+                            else{
+                                if(above.value()!=t.value()||merge[col][k]){
+                                    if(k-1!=row){
+                                        board.move(col,k-1,t);
+                                        changed = true;
+                                        tchanged=true;
+                                    }
+                                    break;
+                                }
+                                else {
+                                    board.move(col,k,t);
+                                    merge[col][k]=true;
+                                    this.score += t.value()*2;
+                                    changed = true;
+                                    tchanged=true;
+                                }
+                            }
+                        }
+                        if(!tchanged){
+                            if(nullTileRow!=row) board.move(col,nullTileRow,t);
+                            changed = true;
+                        }
+                    }
+                }
+            }
+        }
+        else if(side==Side.SOUTH){
+            for(int col = 0; col < board.size(); col++){
+                for(int row = 0; row < board.size(); row++){
+                    Tile t = board.tile(col, row);
+                    if(t!=null){
+                        int nullTileRow=row;
+                        boolean tchanged=false;
+                        for(int k = row-1; k >=0; k--){
+                            Tile above = board.tile(col, k);
+                            if(above==null){
+                                nullTileRow = k;
+                            }
+                            else{
+                                if(above.value()!=t.value()||merge[col][k]){
+                                    if(k+1!=row){
+                                        board.move(col,k+1,t);
+                                        changed = true;
+                                        tchanged=true;
+                                    }
+                                    break;
+                                }
+                                else {
+                                    board.move(col,k,t);
+                                    merge[col][k]=true;
+                                    this.score += t.value()*2;
+                                    changed = true;
+                                    tchanged=true;
+                                }
+                            }
+                        }
+                        if(!tchanged){
+                            if(nullTileRow!=row) board.move(col,nullTileRow,t);
+                            changed = true;
+                        }
+                    }
+                }
+            }
+        }
+        else if(side==Side.WEST){
+            for(int col = 0; col < board.size(); col++){
+                for(int row = board.size()-1; row >= 0; row--){
+                    Tile t = board.tile(col, row);
+                    if(t!=null){
+                        int nullTileCol=col;
+                        boolean tchanged=false;
+                        for(int k = col-1; k >= 0; k--){
+                            Tile above = board.tile(k, row);
+                            if(above==null){
+                                nullTileCol = k;
+                            }
+                            else{
+                                if(above.value()!=t.value()||merge[k][row]){
+                                    if(k+1!=col){
+                                        board.move(k+1,row,t);
+                                        changed = true;
+                                        tchanged=true;
+                                    }
+                                    break;
+                                }
+                                else {
+                                    board.move(k,row,t);
+                                    merge[k][row]=true;
+                                    this.score += t.value()*2;
+                                    changed = true;
+                                    tchanged=true;
+                                }
+                            }
+                        }
+                        if(!tchanged){
+                            if(nullTileCol!=col) board.move(nullTileCol,row,t);
+                            changed = true;
+                        }
+                    }
+                }
+            }
+        }
+        else if(side==Side.EAST){
+            for(int col = board.size()-1; col >= 0; col--){
+                for(int row = board.size()-1; row >= 0; row--){
+                    Tile t = board.tile(col, row);
+                    if(t!=null){
+                        int nullTileCol=col;
+                        boolean tchanged=false;
+                        for(int k = col+1; k < board.size(); k++){
+                            Tile above = board.tile(k, row);
+                            if(above==null){
+                                nullTileCol = k;
+                            }
+                            else{
+                                if(above.value()!=t.value()||merge[k][row]){
+                                    if(k-1!=col){
+                                        board.move(k-1,row,t);
+                                        changed = true;
+                                        tchanged=true;
+                                    }
+                                    break;
+                                }
+                                else {
+                                    board.move(k,row,t);
+                                    merge[k][row]=true;
+                                    this.score += t.value()*2;
+                                    changed = true;
+                                    tchanged=true;
+                                }
+                            }
+                        }
+                        if(!tchanged){
+                            if(nullTileCol!=col) board.move(nullTileCol,row,t);
+                            changed = true;
+                        }
+                    }
+                }
+            }
+        }
         checkGameOver();
         if (changed) {
             setChanged();
@@ -169,7 +321,6 @@ public class Model extends Observable {
      * 2. There are two adjacent tiles with the same value.
      */
     public static boolean atLeastOneMoveExists(Board b) {
-        // TODO: Fill in this function.
         int[] dx = {1, -1, 0, 0};
         int[] dy = {0, 0, 1, -1};
         int length = b.size();

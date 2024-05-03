@@ -2,7 +2,7 @@ package deque;
 
 import java.util.Iterator;
 
-public class LinkedListDeque<T> {
+public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
     private class Node{
         T data;
         Node next;
@@ -28,6 +28,7 @@ public class LinkedListDeque<T> {
      * add item into first place
      * @param item
      */
+    @Override
     public void addFirst(T item){
         Node newNode = new Node(item);
         newNode.next = sentinal.next;
@@ -41,6 +42,7 @@ public class LinkedListDeque<T> {
      * add item into last place
      * @param item
      */
+    @Override
     public void addLast(T item){
         Node newNode = new Node(item);
         newNode.prev = sentinal.prev;
@@ -54,6 +56,7 @@ public class LinkedListDeque<T> {
      * check if it is empty
      * @return true if the container is empty, false otherwise
      */
+    @Override
     public boolean isEmpty(){
         return sentinal.next == sentinal;
     }
@@ -62,6 +65,7 @@ public class LinkedListDeque<T> {
      * return the size of it
      * @return type int
      */
+    @Override
     public int size(){
         return size;
     }
@@ -69,6 +73,7 @@ public class LinkedListDeque<T> {
     /**
      * print the whole deque
      */
+    @Override
     public void printDeque(){
         Node current = sentinal.next;
         while(current != sentinal){
@@ -83,6 +88,7 @@ public class LinkedListDeque<T> {
      *
      * @return the first item of deque, if it is empty, return null
      */
+    @Override
     public T removeFirst(){
         if(this.isEmpty()){
             return null;
@@ -98,6 +104,7 @@ public class LinkedListDeque<T> {
      *
      * @return the last item of deque, if it is empty, return null
      */
+    @Override
     public T removeLast(){
         if(this.isEmpty()){
             return null;
@@ -124,6 +131,7 @@ public class LinkedListDeque<T> {
      * @param index
      * @return the item at the given index, if no such item exists, return null
      */
+    @Override
     public T get(int index){
         if(index >= this.size){
             return null;
@@ -134,6 +142,7 @@ public class LinkedListDeque<T> {
         }
         return current.data;
     }
+
     public Iterator<T> iterator(){
         return new LinkedListDequeIterator();
     }
@@ -155,6 +164,7 @@ public class LinkedListDeque<T> {
      * @param o
      * @return true if they are equal, false otherwise
      */
+    @Override
     public boolean equals(Object o){
         if(this.getClass() != o.getClass()){
             return false;

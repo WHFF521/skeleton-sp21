@@ -1,8 +1,43 @@
 package deque;
+
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
+import java.util.Iterator;
+
 public class ArrayDequeTest {
+
+    @Test
+    public void testIteratornext() {
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        deque.addLast(1);
+        deque.addLast(2);
+        deque.addLast(3);
+        deque.addLast(4);
+        deque.addLast(5);
+        Iterator<Integer> dequeIterator = deque.iterator();
+        int i = 0;
+        while (dequeIterator.hasNext()) {
+            int x = deque.get(i);
+            assertEquals(x, (int) dequeIterator.next());
+            i++;
+        }
+    }
+
+    @Test
+    public void testIteratorHasNext() {
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        deque.addLast(1);
+        deque.addLast(2);
+        deque.addLast(3);
+        deque.addLast(4);
+        deque.addLast(5);
+        Iterator<Integer> dequeIterator = deque.iterator();
+        for (int i = 1; i <= 10; i++) dequeIterator.next();
+        assertFalse(dequeIterator.hasNext());
+
+    }
 
     @Test
     public void testAddFirstAndRemoveFirst() {
@@ -69,6 +104,7 @@ public class ArrayDequeTest {
         deque2.addLast(1);
         deque2.addLast(2);
         deque2.addLast(3);
+
 
         ArrayDeque<Integer> deque3 = new ArrayDeque<>();
         deque3.addLast(3);

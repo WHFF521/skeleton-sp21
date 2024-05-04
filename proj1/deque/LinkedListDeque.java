@@ -115,11 +115,11 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         private Node current = sentinal.next;
 
         public boolean hasNext() {
-            return current.next != sentinal;
+            return current != sentinal;
         }
 
         public T next() {
-            if (current.next == sentinal) {
+            if (current == sentinal) {
                 return null;
             }
             T item = current.data;
@@ -173,10 +173,10 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         if (o == null) {
             return false;
         }
-        if (!(o instanceof Deque)) {
+        if (!(o instanceof LinkedListDeque)) {
             return false;
         } else {
-            Deque<?> other = (Deque<?>) o;
+            LinkedListDeque<?> other = (LinkedListDeque<?>) o;
             if (this.size() != other.size()) {
                 return false;
             }

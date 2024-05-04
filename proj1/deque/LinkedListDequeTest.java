@@ -12,13 +12,18 @@ import static org.junit.Assert.*;
  */
 public class LinkedListDequeTest {
     @Test
-    public void testEqueals() {
+    public void testEquals() {
         LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
         LinkedListDeque<Integer> lld2 = new LinkedListDeque<>();
         assertTrue(lld1.equals(lld2));
         lld1.addFirst(1);
         assertFalse(lld1.equals(lld2));
         lld2.addFirst(1);
+        assertTrue(lld1.equals(lld2));
+        for (int i = 1; i <= 1000; i++) {
+            lld1.addFirst(i);
+            lld2.addFirst(i);
+        }
         assertTrue(lld1.equals(lld2));
     }
 

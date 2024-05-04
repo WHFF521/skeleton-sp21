@@ -7,6 +7,31 @@ import org.junit.Test;
 import java.util.Iterator;
 
 public class ArrayDequeTest {
+    @Test
+    public void testEqualsMoreNumbers() {
+        ArrayDeque<Integer> ad1 = new ArrayDeque<>();
+        ArrayDeque<Integer> ad2 = new ArrayDeque<>();
+        assertTrue(ad1.equals(ad2));
+        ad1.addFirst(1);
+        assertFalse(ad1.equals(ad2));
+        ad2.addFirst(1);
+        assertTrue(ad1.equals(ad2));
+        for (int i = 1; i <= 1000; i++) {
+            ad1.addFirst(i);
+            ad2.addFirst(i);
+        }
+        assertTrue(ad1.equals(ad2));
+    }
+
+    @Test
+    public void testLinkedEqualsArray() {
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
+        ArrayDeque<Integer> ad1 = new ArrayDeque<>();
+        lld1.addFirst(1);
+        assertFalse(lld1.equals(ad1));
+        ad1.addFirst(1);
+        assertTrue(lld1.equals(ad1));
+    }
 
     @Test
     public void testIteratornext() {

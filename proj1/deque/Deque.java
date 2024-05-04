@@ -1,13 +1,14 @@
 package deque;
 
-import java.util.Iterator;
 
 public interface Deque<T> {
     void addFirst(T item);
 
     void addLast(T item);
 
-    boolean isEmpty();
+    default boolean isEmpty(){
+        return size() == 0;
+    }
 
     int size();
 

@@ -4,4 +4,5 @@
 * [x] lab2
 * [x] project0
 * [x] lab3
-* [x] project1 
+* [x] project1
+* [x] Lab 4: Debugging

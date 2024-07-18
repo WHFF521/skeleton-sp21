@@ -1,0 +1,8 @@
+Please enter desired length of each string: 50
+
+Enter # strings to insert into the maps: adljksacndjcnkecnsjdcns
+Please enter a positive integer: 10000
+class bstmap.ULLMap: 0.37 sec
+class bstmap.BSTMap: 0.01 sec
+Java's Built-in TreeMap: 0.01 sec
+Java's Built-in HashMap: 0.01 sec
